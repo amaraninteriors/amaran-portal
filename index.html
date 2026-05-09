@@ -71,7 +71,7 @@ var PRIORITIES = ["Low", "Medium", "High", "Critical"];
 var TASK_STATUSES = ["Pending", "In Progress", "Done", "Needs Approval", "Approved"];
 var ROLES = ["Owner", "Site Supervisor", "Designer", "Contractor", "Office Staff", "Accountant"];
 var uid = function uid() {
-  return Math.random().toString(36).slice(2, 10);
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 };
 var fmt = function fmt(n) {
   return "\u20B9" + Number(n || 0).toLocaleString("en-IN");
