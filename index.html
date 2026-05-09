@@ -8,26 +8,21 @@
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body, #root { min-height: 100vh; width: 100%; }
-body {
-  background: linear-gradient(135deg, #e8f0fe 0%, #f3e8ff 35%, #fff7ed 65%, #e0f2fe 100%);
-  background-attachment: fixed;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #1A202C;
-}
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-@keyframes slideRight { from{opacity:0;transform:translateX(-12px)} to{opacity:1;transform:none} }
-@keyframes badgePop { 0%{transform:scale(0.7)} 60%{transform:scale(1.15)} 100%{transform:scale(1)} }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body,#root{min-height:100vh;width:100%;}
+body{background:linear-gradient(135deg,#e8f0fe 0%,#f3e8ff 35%,#fff7ed 65%,#e0f2fe 100%);background-attachment:fixed;font-family:'Plus Jakarta Sans',sans-serif;color:#1A202C;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+@keyframes badgePop{0%{transform:scale(.7)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
 .fu{animation:fadeUp .3s ease both}
 .fi{animation:fadeIn .2s ease both}
 .sr{animation:slideRight .25s ease both}
 .hov{transition:all .2s}
-.hov:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.1)}
+.hov:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
 .btn{transition:opacity .15s,transform .1s;cursor:pointer}
 .btn:hover{opacity:.85}
 .btn:active{transform:scale(.97)}
@@ -35,7 +30,7 @@ body {
 .inp{transition:border-color .15s}
 .inp:focus{border-color:#B8860B!important;outline:none}
 .row-hover{transition:background .1s}
-.row-hover:hover{background:rgba(255,255,255,0.5)}
+.row-hover:hover{background:rgba(255,255,255,.5)}
 </style>
 </head>
 <body>
@@ -46,7 +41,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 var _excluded = ["label", "hint"],
   _excluded2 = ["label", "children"],
   _excluded3 = ["children", "v", "sm"];
-function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https:
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -112,10 +107,13 @@ var calcProject = function calcProject(p) {
     balance: quoted - received
   };
 };
+
+// ── Google Drive ──────────────────────────────
+// ── Google Sheets Storage ─────────────────────────────────────────────────────
 var SHEET_ID = '1kmzGzcgXpSESXO6stYvSetnw_yRIOmhdCkCYqReO5rI';
 var SA_EMAIL = 'amaran-app@amaraninteriors.iam.gserviceaccount.com';
 var SA_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDVmOSULCXbFRQf\nMzMYO3VRx/UdysIfcyS/NbKCtX9j+d9uP7meAzOkdFK0tU1E3O2czXcbwZdGLzbZ\nyI7nlK554Z8PqNWV735/twNQPMpQZRe1xL7BU0GA4AwusH1k5eG3aNlL4IDYFtJM\n65/3PJdIINrgKYTa/DI2MOdlaPbtI5K9awpDPbiexqJEbYyq082aNhukbNREwTFA\nfPQK6dQaQOaKS5zasUq+vWezhQhhGC4gi2OKTpjKVSd2Gkdt8cpDcmRa+P+GTALj\n0oupI92tJ3zZCdSHEkQRfUMHzBWQeAo1teLFDFaD6hfxXcTwYAa2ZI3hNQ1JEIJO\ncEdPHoWpAgMBAAECggEAWVm+7LjXESFtLGwHiLB+sDo8MD08HVnWWmJFDWaNJq5F\nJ+JibFYciUPbwRpCe3cLstdEZwkBlet0P4AlP3yzy+p01mEjD7iCqzxMl4kGfMD9\nPR1TSp3gPd/7WKCdo9KCLG4g0BvW6g4J5QGABjWDdzm/NZxIpi5vdrnYYlSZTrMZ\nyj4WNyY+lreac+eA1uK52N4AUEnqLwjIPivLAdsYq9GK0P1MpEbX84pwLaIVEwh4\nVkfxIViCtvApiDaS4RkLhci7AtkO01T2kYyz+Su/3gk13vpa2gnYQz40+/z58gz5\n2j2xCkDfKggSJv2goMvyWYEg5BxNumrgq3pZvi7eXQKBgQD5RkIUlzFIHoPfCbXb\nUy8cHuM4V9vTRMgiFHR+/XciOAS9vJRZUTeiGHWwMH2aMyJLEzKR0uSphtSj6wXr\nhHg999qH37gaavssEE2/rNEm9uWnEeicmJfMesOUKfByI37/gVinvYDbUt77HsEj\nhq19Yd6fp2kROd+Oyn5zLrShOwKBgQDbXDY5gDF56f4eI5G1VdrA0YYa2Q3F8nh0\nUjcxKNg4tLXiDeUBKrMmgyDiBuDlN/v/9Jbk4nSumn7bTEC2pIPEbWTstJZ/v7jF\ngkaoPbqNKPkj1QD8RuvFZEvF8r9RJhIKWQGCtUc+sR7etyRCLjMvHw8VLnVuwC1Y\nkUKn6AtGawKBgFY+89AR+7AbNr8tqeknn84X9b/hziIL0z7PWvsxEU4ambFYFO/O\nRPRliBqcvGhktsHI8582m3z4NIw+Xb7+B2hRYB/QzO7/AsZdIblmvrq/g/fJH3VG\n6oaKFy8lT5b+JwuaIiVvUK0RwCqcmnCDQXV3LkKI9rZKEsphz1xk1YRPAoGBANgp\n6G2FfDwNcBO3LXEqp6T3VFXEqyPzquvF0QmqnFhVDB81XgRmVaCP+6mA6cI4BybV\nmpT269DcAkKMxAC34fmBa8EuvFgrUCOiG4rTObC9PbYnww7XvKMKEPmCGzIWeBSm\nXSy3AvwugqMqipqE+H9o9e4DmEmJK6ZpjuvzaJj9AoGANkn2PHyom9JHcBaErSYE\n5bDjifHqu73A4+h0IF4LkYlSKytYoJZCRI8+UG0kTkjzbkYFCyXhfXLCQYg1rwkV\nxCDO+qWyCuRVV02PgoHvNF8Uv3mrOVVZxmSy0gWzC3jlS4qxgj5W1Jf/u0HDZqFk\n64rTqxwzUMFYe8b97yr2W9k=\n-----END PRIVATE KEY-----\n";
-var TOKEN_URI = 'https:
+var TOKEN_URI = 'https://oauth2.googleapis.com/token';
 var STABS = {
   meta: 'AppMeta',
   projects: 'Projects',
@@ -162,7 +160,7 @@ function _getAccessToken() {
           })));
           clm = b64url(btoa(JSON.stringify({
             iss: SA_EMAIL,
-            scope: 'https:
+            scope: 'https://www.googleapis.com/auth/spreadsheets',
             aud: TOKEN_URI,
             exp: now + 3600,
             iat: now
@@ -220,7 +218,7 @@ function _sheetsGet() {
         case 1:
           t = _context3.v;
           _context3.n = 2;
-          return fetch("https:
+          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "/values/").concat(encodeURIComponent(range)), {
             headers: {
               Authorization: 'Bearer ' + t
             }
@@ -257,7 +255,7 @@ function _sheetsSet() {
         case 1:
           t = _context4.v;
           _context4.n = 2;
-          return fetch("https:
+          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "/values/").concat(encodeURIComponent(range), "?valueInputOption=RAW"), {
             method: 'PUT',
             headers: {
               Authorization: 'Bearer ' + t,
@@ -297,7 +295,7 @@ function _ensureTabs() {
         case 2:
           token = _context5.v;
           _context5.n = 3;
-          return fetch("https:
+          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "?fields=sheets.properties.title"), {
             headers: {
               Authorization: 'Bearer ' + token
             }
@@ -325,7 +323,7 @@ function _ensureTabs() {
             break;
           }
           _context5.n = 6;
-          return fetch("https:
+          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, ":batchUpdate"), {
             method: 'POST',
             headers: {
               Authorization: 'Bearer ' + token,
@@ -344,6 +342,7 @@ function _ensureTabs() {
             })
           });
         case 6:
+          // Write headers to new tabs only
           valueRanges = toAdd.filter(function (t) {
             return Object.keys(STABS).find(function (k) {
               return STABS[k] === t && k !== 'meta';
@@ -362,7 +361,7 @@ function _ensureTabs() {
             break;
           }
           _context5.n = 7;
-          return fetch("https:
+          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "/values:batchUpdate"), {
             method: 'POST',
             headers: {
               Authorization: 'Bearer ' + token,
@@ -454,12 +453,13 @@ function _loadDrive() {
           return getAccessToken();
         case 2:
           token = _context7.v;
+          // Single batch request - all tabs at once
           ranges = Object.values(STABS).filter(function (t) {
             return t !== STABS.meta;
           }).map(function (t) {
             return t + '!A:N';
           }).concat([STABS.meta + '!A:B']);
-          url = 'https:
+          url = 'https://sheets.googleapis.com/v4/spreadsheets/' + SHEET_ID + '/values:batchGet?' + ranges.map(function (r) {
             return 'ranges=' + encodeURIComponent(r);
           }).join('&');
           _context7.n = 3;
@@ -477,7 +477,7 @@ function _loadDrive() {
           vr = (json.valueRanges || []).map(function (v) {
             return v.values || [];
           });
-          _vr = _slicedToArray(vr, 8), pr = _vr[0], pa = _vr[1], ex = _vr[2], ta = _vr[3], te = _vr[4], up = _vr[5], bq = _vr[6], mt = _vr[7]; 
+          _vr = _slicedToArray(vr, 8), pr = _vr[0], pa = _vr[1], ex = _vr[2], ta = _vr[3], te = _vr[4], up = _vr[5], bq = _vr[6], mt = _vr[7]; // If no project data, try old AppData migration
           if (!(!pr || pr.length < 2)) {
             _context7.n = 7;
             break;
@@ -707,9 +707,9 @@ function _saveDrive() {
           }, {
             range: STABS.meta + '!A:B',
             values: [['key', 'value'], ['categories', JSON.stringify(data.categories || DEFAULT_EXPENSE_CATS)]]
-          }]; 
+          }]; // Single batch update for all tabs
           _context8.n = 3;
-          return fetch('https:
+          return fetch('https://sheets.googleapis.com/v4/spreadsheets/' + SHEET_ID + '/values:batchUpdate', {
             method: 'POST',
             headers: {
               Authorization: 'Bearer ' + token,
@@ -785,7 +785,7 @@ var PROJECT_STATUS_C = {
   Completed: T.blue,
   Cancelled: T.red
 };
-var CSS = "\n@import url('https:
+var CSS = "";
 var FF = {
   body: "'Plus Jakarta Sans',sans-serif",
   head: "'Outfit',sans-serif"
@@ -1069,6 +1069,8 @@ function Modal(_ref7) {
     }
   }, "\u2715")), children));
 }
+
+// ── Task Checklist ────────────────────────────────────────────────────────────
 function ChecklistEditor(_ref8) {
   var _ref8$items = _ref8.items,
     items = _ref8$items === void 0 ? [] : _ref8$items,
@@ -1213,6 +1215,8 @@ function ChecklistEditor(_ref8) {
     onClick: add
   }, "+ Step")));
 }
+
+// ── Task Form ─────────────────────────────────────────────────────────────────
 function TaskForm(_ref9) {
   var team = _ref9.team,
     projects = _ref9.projects,
@@ -1383,6 +1387,8 @@ function TaskForm(_ref9) {
     }
   }, initial ? "Save Changes" : "Create Task")));
 }
+
+// ── Task Card ─────────────────────────────────────────────────────────────────
 function TaskCard(_ref0) {
   var _task$checklist, _task$checklist2;
   var task = _ref0.task,
@@ -1652,6 +1658,8 @@ function TaskCard(_ref0) {
     }
   }, "\u2705 Approved: ", task.approvedAt))));
 }
+
+// ── Tasks Page ────────────────────────────────────────────────────────────────
 function TasksPage(_ref1) {
   var tasks = _ref1.tasks,
     team = _ref1.team,
@@ -1882,6 +1890,8 @@ function TasksPage(_ref1) {
     }
   }));
 }
+
+// ── Team Page ─────────────────────────────────────────────────────────────────
 function TeamPage(_ref10) {
   var team = _ref10.team,
     setTeam = _ref10.setTeam,
@@ -2116,6 +2126,8 @@ function TeamPage(_ref10) {
     }
   }, "No team members yet"))));
 }
+
+// ── Project Card ──────────────────────────────────────────────────────────────
 function ProjectCard(_ref11) {
   var p = _ref11.p,
     team = _ref11.team,
@@ -2273,6 +2285,8 @@ function ProjectCard(_ref11) {
     }
   }, "\u26A1 ", pendingTasks, " pending tasks"), (p.payments || []).length > 0 && /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCB0 ", (p.payments || []).length, " payments")));
 }
+
+// ── Confirm Dialog ───────────────────────────────────────────────────────────────
 function ConfirmDialog(_ref12) {
   var item = _ref12.item,
     onConfirm = _ref12.onConfirm,
@@ -2342,6 +2356,8 @@ function ConfirmDialog(_ref12) {
     onClick: onConfirm
   }, "Yes, Delete"))));
 }
+
+// ── Project Detail ────────────────────────────────────────────────────────────
 function ProjectDetail(_ref13) {
   var project = _ref13.project,
     team = _ref13.team,
@@ -4209,6 +4225,8 @@ function ProjectDetail(_ref13) {
     }
   }));
 }
+
+// ── New Project Form ──────────────────────────────────────────────────────────
 function NewProjectForm(_ref15) {
   var onSave = _ref15.onSave,
     onClose = _ref15.onClose;
@@ -4361,6 +4379,8 @@ function NewProjectForm(_ref15) {
     }
   }, "Create Project \u2192")));
 }
+
+// ── Member Login View ─────────────────────────────────────────────────────────
 function MemberView(_ref16) {
   var member = _ref16.member,
     tasks = _ref16.tasks,
@@ -4539,6 +4559,10 @@ function MemberView(_ref16) {
     });
   }))));
 }
+
+// ── Login / Member Select ─────────────────────────────────────────────────────
+
+// ── Categories Manager ────────────────────────────────────────────────────────
 function CategoriesModal(_ref18) {
   var categories = _ref18.categories,
     onSave = _ref18.onSave,
@@ -4730,6 +4754,8 @@ function CategoriesModal(_ref18) {
     }
   }, "Save Categories")));
 }
+
+// ── Expenses Tracker Page ─────────────────────────────────────────────────────
 function ExpensesPage(_ref21) {
   var projects = _ref21.projects,
     categories = _ref21.categories;
@@ -4761,6 +4787,8 @@ function ExpensesPage(_ref21) {
     _useState66 = _slicedToArray(_useState65, 2),
     sortBy = _useState66[0],
     setSortBy = _useState66[1];
+
+  // Flatten all expenses from all projects
   var allExpenses = (projects || []).flatMap(function (p) {
     return (p.expenses || []).map(function (e) {
       return _objectSpread(_objectSpread({}, e), {}, {
@@ -4769,6 +4797,8 @@ function ExpensesPage(_ref21) {
       });
     });
   });
+
+  // Apply filters
   var filtered = allExpenses.filter(function (e) {
     var _e$description, _e$vendor;
     if (filterCat !== 'All' && e.category !== filterCat) return false;
@@ -4798,6 +4828,8 @@ function ExpensesPage(_ref21) {
   }).reduce(function (a, e) {
     return a + Number(e.amount || 0);
   }, 0);
+
+  // Category summary
   var catSummary = (categories || DEFAULT_EXPENSE_CATS).map(function (cat) {
     return {
       cat: cat,
@@ -4815,6 +4847,8 @@ function ExpensesPage(_ref21) {
   }).sort(function (a, b) {
     return b.total - a.total;
   });
+
+  // Export to CSV (opens as Excel)
   var exportCSV = function exportCSV() {
     var headers = ['Date', 'Project', 'Category', 'Description', 'Vendor', 'Bill No', 'Amount', 'Paid By'];
     var rows = filtered.map(function (e) {
@@ -5604,6 +5638,8 @@ function LoginPage(_ref22) {
     }
   }, "AMARAN INTERIORS \xA9 ", new Date().getFullYear())));
 }
+
+// ── Main App ──────────────────────────────────────────────────────────────────
 function App() {
   var _useState73 = useState({
       projects: [],
@@ -5866,7 +5902,7 @@ function App() {
       fontFamily: FF.body,
       color: T.text
     }
-  }, /*#__PURE__*/React.createElement("style", null, CSS), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
       background: "rgba(255,255,255,0.88)",
       backdropFilter: "blur(12px)",
