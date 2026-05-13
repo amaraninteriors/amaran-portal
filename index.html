@@ -520,36 +520,50 @@ function _loadDrive() {
               startDate: p['Start Date'],
               expectedEnd: p['Expected End'],
               notes: p['Notes'],
-              payments: pao.filter(function (x) {
-                return x['Project ID'] === p['ID'];
-              }).map(function (x) {
-                return {
-                  id: x['ID'],
-                  label: x['Label'],
-                  amount: Number(x['Amount'] || 0),
-                  mode: x['Mode'],
-                  date: x['Date'],
-                  note: x['Note']
-                };
-              }).sort(function (a, b) {
-                return (a.date || '').localeCompare(b.date || '');
-              }),
-              expenses: exo.filter(function (x) {
-                return x['Project ID'] === p['ID'];
-              }).map(function (x) {
-                return {
-                  id: x['ID'],
-                  category: x['Category'],
-                  description: x['Description'],
-                  amount: Number(x['Amount'] || 0),
-                  vendor: x['Vendor'],
-                  billNo: x['Bill No'],
-                  paidBy: x['Paid By'],
-                  date: x['Date']
-                };
-              }).sort(function (a, b) {
-                return (a.date || '').localeCompare(b.date || '');
-              }),
+              payments: function () {
+                var seen = new Set();
+                return pao.filter(function (x) {
+                  return x['Project ID'] === p['ID'];
+                }).map(function (x) {
+                  return {
+                    id: x['ID'],
+                    label: x['Label'],
+                    amount: Number(x['Amount'] || 0),
+                    mode: x['Mode'],
+                    date: x['Date'],
+                    note: x['Note']
+                  };
+                }).filter(function (x) {
+                  if (!x.id || seen.has(x.id)) return false;
+                  seen.add(x.id);
+                  return true;
+                }).sort(function (a, b) {
+                  return (a.date || '').localeCompare(b.date || '');
+                });
+              }(),
+              expenses: function () {
+                var seen = new Set();
+                return exo.filter(function (x) {
+                  return x['Project ID'] === p['ID'];
+                }).map(function (x) {
+                  return {
+                    id: x['ID'],
+                    category: x['Category'],
+                    description: x['Description'],
+                    amount: Number(x['Amount'] || 0),
+                    vendor: x['Vendor'],
+                    billNo: x['Bill No'],
+                    paidBy: x['Paid By'],
+                    date: x['Date']
+                  };
+                }).filter(function (x) {
+                  if (!x.id || seen.has(x.id)) return false;
+                  seen.add(x.id);
+                  return true;
+                }).sort(function (a, b) {
+                  return (a.date || '').localeCompare(b.date || '');
+                });
+              }(),
               updates: upo.filter(function (x) {
                 return x['Project ID'] === p['ID'];
               }).map(function (x) {
@@ -662,7 +676,12 @@ function _saveDrive() {
           }, {
             range: STABS.payments + '!A:Z',
             values: [HDRS.payments].concat(_toConsumableArray((data.projects || []).flatMap(function (p) {
-              return _toConsumableArray(p.payments || []).sort(function (a, b) {
+              var seen = new Set();
+              return _toConsumableArray(p.payments || []).filter(function (x) {
+                if (!x.id || seen.has(x.id)) return false;
+                seen.add(x.id);
+                return true;
+              }).sort(function (a, b) {
                 return (a.date || '').localeCompare(b.date || '');
               }).map(function (x) {
                 return [x.id, p.id, p.name, x.label || '', x.amount || 0, x.mode || '', x.date || '', x.note || ''];
@@ -671,7 +690,12 @@ function _saveDrive() {
           }, {
             range: STABS.expenses + '!A:Z',
             values: [HDRS.expenses].concat(_toConsumableArray((data.projects || []).flatMap(function (p) {
-              return _toConsumableArray(p.expenses || []).sort(function (a, b) {
+              var seen = new Set();
+              return _toConsumableArray(p.expenses || []).filter(function (x) {
+                if (!x.id || seen.has(x.id)) return false;
+                seen.add(x.id);
+                return true;
+              }).sort(function (a, b) {
                 return (a.date || '').localeCompare(b.date || '');
               }).map(function (x) {
                 return [x.id, p.id, p.name, x.category || '', x.description || '', x.amount || 0, x.vendor || '', x.billNo || '', x.paidBy || '', x.date || ''];
@@ -2502,9 +2526,9 @@ function ProjectDetail(_ref13) {
   };
   var addPayment = function addPayment() {
     if (!payForm.amount) return;
-    var newPay = [].concat(_toConsumableArray(project.payments || []), [_objectSpread(_objectSpread({
-      id: uid()
-    }, payForm), {}, {
+    var newId = uid();
+    var newPay = [].concat(_toConsumableArray(project.payments || []), [_objectSpread(_objectSpread({}, payForm), {}, {
+      id: newId,
       amount: Number(payForm.amount)
     })]).sort(function (a, b) {
       return (a.date || '').localeCompare(b.date || '');
@@ -2534,9 +2558,9 @@ function ProjectDetail(_ref13) {
   };
   var addExpense = function addExpense() {
     if (!expForm.description || !expForm.amount) return;
-    var newExp = [].concat(_toConsumableArray(project.expenses || []), [_objectSpread(_objectSpread({
-      id: uid()
-    }, expForm), {}, {
+    var newId = uid();
+    var newExp = [].concat(_toConsumableArray(project.expenses || []), [_objectSpread(_objectSpread({}, expForm), {}, {
+      id: newId,
       amount: Number(expForm.amount)
     })]).sort(function (a, b) {
       return (a.date || '').localeCompare(b.date || '');
