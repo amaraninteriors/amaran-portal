@@ -438,7 +438,7 @@ function loadDrive() {
 }
 function _loadDrive() {
   _loadDrive = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-    var token, ranges, url, res, json, vr, _vr, pr, pa, ex, ta, te, up, bq, mt, oldData, po, pao, exo, tao, teo, upo, bqo, categories, cr, projects, team, tasks, _t5;
+    var token, ranges, url, res, json, vr, _vr, pr, pa, ex, ta, te, up, bq, mt, oldData, po, pao, exo, tao, teo, upo, bqo, categories, cr, projects, team, tasks, dedup, _t5;
     return _regenerator().w(function (_context7) {
       while (1) switch (_context7.p = _context7.n) {
         case 0:
@@ -617,11 +617,26 @@ function _loadDrive() {
               checklist: t['Checklist'] ? JSON.parse(t['Checklist'] || '[]') : [],
               createdAt: t['Created At'] || ''
             };
-          });
+          }); // Final dedup pass on load
+          dedup = function dedup(arr) {
+            var s = new Set();
+            return (arr || []).filter(function (x) {
+              if (!x.id || s.has(String(x.id))) return false;
+              s.add(String(x.id));
+              return true;
+            });
+          };
           return _context7.a(2, {
-            projects: projects,
-            team: team,
-            tasks: tasks,
+            projects: projects.map(function (p) {
+              return _objectSpread(_objectSpread({}, p), {}, {
+                payments: dedup(p.payments),
+                expenses: dedup(p.expenses),
+                updates: dedup(p.updates),
+                boq: dedup(p.boq)
+              });
+            }),
+            team: dedup(team),
+            tasks: dedup(tasks),
             categories: categories
           });
         case 8:
@@ -644,17 +659,38 @@ function saveDrive(_x4) {
 }
 function _saveDrive() {
   _saveDrive = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
-    var token, findName, findMember, valueRanges, _t6;
+    var dedup, token, findName, findMember, valueRanges, _t6;
     return _regenerator().w(function (_context8) {
       while (1) switch (_context8.p = _context8.n) {
         case 0:
-          _context8.p = 0;
-          _context8.n = 1;
-          return ensureTabs();
-        case 1:
+          // Deduplicate all arrays before saving
+          dedup = function dedup(arr) {
+            var seen = new Set();
+            return (arr || []).filter(function (x) {
+              if (!x.id || seen.has(String(x.id))) return false;
+              seen.add(String(x.id));
+              return true;
+            });
+          };
+          data = _objectSpread(_objectSpread({}, data), {}, {
+            projects: (data.projects || []).map(function (p) {
+              return _objectSpread(_objectSpread({}, p), {}, {
+                payments: dedup(p.payments),
+                expenses: dedup(p.expenses),
+                updates: dedup(p.updates),
+                boq: dedup(p.boq)
+              });
+            }),
+            tasks: dedup(data.tasks),
+            team: dedup(data.team)
+          });
+          _context8.p = 1;
           _context8.n = 2;
-          return getAccessToken();
+          return ensureTabs();
         case 2:
+          _context8.n = 3;
+          return getAccessToken();
+        case 3:
           token = _context8.v;
           findName = function findName(id) {
             var _find;
@@ -729,7 +765,7 @@ function _saveDrive() {
             range: STABS.meta + '!A:B',
             values: [['key', 'value'], ['categories', JSON.stringify(data.categories || DEFAULT_EXPENSE_CATS)]]
           }]; // Single batch update for all tabs
-          _context8.n = 3;
+          _context8.n = 4;
           return fetch('https://sheets.googleapis.com/v4/spreadsheets/' + SHEET_ID + '/values:batchUpdate', {
             method: 'POST',
             headers: {
@@ -741,17 +777,17 @@ function _saveDrive() {
               data: valueRanges
             })
           });
-        case 3:
-          _context8.n = 5;
-          break;
         case 4:
-          _context8.p = 4;
+          _context8.n = 6;
+          break;
+        case 5:
+          _context8.p = 5;
           _t6 = _context8.v;
           console.error('Save error', _t6);
-        case 5:
+        case 6:
           return _context8.a(2);
       }
-    }, _callee8, null, [[0, 4]]);
+    }, _callee8, null, [[1, 5]]);
   }));
   return _saveDrive.apply(this, arguments);
 }
@@ -5703,31 +5739,43 @@ function App() {
       setLoading(false);
     });
   }, []);
+  var isSavingRef = useRef(false);
+  var pendingDataRef = useRef(null);
   var persist = useCallback(function (d) {
+    // Always store latest data
+    pendingDataRef.current = d;
     if (saveRef.current) clearTimeout(saveRef.current);
-    setSaving(true);
     saveRef.current = setTimeout(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
       var _t;
       return _regenerator().w(function (_context) {
         while (1) switch (_context.p = _context.n) {
           case 0:
-            _context.p = 0;
-            _context.n = 1;
-            return saveDrive(d);
+            if (!isSavingRef.current) {
+              _context.n = 1;
+              break;
+            }
+            return _context.a(2);
           case 1:
-            _context.n = 3;
-            break;
-          case 2:
+            isSavingRef.current = true;
+            setSaving(true);
             _context.p = 2;
+            _context.n = 3;
+            return saveDrive(pendingDataRef.current);
+          case 3:
+            _context.n = 5;
+            break;
+          case 4:
+            _context.p = 4;
             _t = _context.v;
             console.error(_t);
-          case 3:
+          case 5:
+            isSavingRef.current = false;
             setSaving(false);
-          case 4:
+          case 6:
             return _context.a(2);
         }
-      }, _callee, null, [[0, 2]]);
-    })), 1400);
+      }, _callee, null, [[2, 4]]);
+    })), 3000);
   }, []);
   var update = function update(key, val) {
     var nd = _objectSpread(_objectSpread({}, data), {}, _defineProperty({}, key, val));
