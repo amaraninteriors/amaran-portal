@@ -5,32 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AMARAN INTERIORS — Management Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body,#root{min-height:100vh;width:100%;}
-body{background:linear-gradient(135deg,#e8f0fe 0%,#f3e8ff 35%,#fff7ed 65%,#e0f2fe 100%);background-attachment:fixed;font-family:'Plus Jakarta Sans',sans-serif;color:#1A202C;}
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+body{background:#FAFAF8;font-family:'Plus Jakarta Sans',sans-serif;color:#1C1A16;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-@keyframes slideRight{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
-@keyframes badgePop{0%{transform:scale(.7)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
-.fu{animation:fadeUp .3s ease both}
-.fi{animation:fadeIn .2s ease both}
-.sr{animation:slideRight .25s ease both}
-.hov{transition:all .2s}
-.hov:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
-.btn{transition:opacity .15s,transform .1s;cursor:pointer}
-.btn:hover{opacity:.85}
-.btn:active{transform:scale(.97)}
-.tab{transition:all .15s}
-.inp{transition:border-color .15s}
-.inp:focus{border-color:#B8860B!important;outline:none}
-.row-hover{transition:background .1s}
-.row-hover:hover{background:rgba(255,255,255,.5)}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:#E8E0D0;border-radius:99px;}
 </style>
 </head>
 <body>
@@ -40,7 +25,9 @@ const { useState, useEffect, useCallback, useRef } = React;
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 var _excluded = ["label", "hint"],
   _excluded2 = ["label", "children"],
-  _excluded3 = ["children", "v", "sm"];
+  _excluded3 = ["children", "v", "sm"],
+  _excluded4 = ["payments", "expenses", "updates", "boq"];
+function _regeneratorValues(e) { if (null != e) { var t = e["function" == typeof Symbol && Symbol.iterator || "@@iterator"], r = 0; if (t) return t.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) return { next: function next() { return e && r >= e.length && (e = void 0), { value: e && e[r++], done: !e }; } }; } throw new TypeError(_typeof(e) + " is not iterable"); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
@@ -107,691 +94,329 @@ var calcProject = function calcProject(p) {
     balance: quoted - received
   };
 };
-var SHEET_ID = '1kmzGzcgXpSESXO6stYvSetnw_yRIOmhdCkCYqReO5rI';
-var SA_EMAIL = 'amaran-app@amaraninteriors.iam.gserviceaccount.com';
-var SA_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDVmOSULCXbFRQf\nMzMYO3VRx/UdysIfcyS/NbKCtX9j+d9uP7meAzOkdFK0tU1E3O2czXcbwZdGLzbZ\nyI7nlK554Z8PqNWV735/twNQPMpQZRe1xL7BU0GA4AwusH1k5eG3aNlL4IDYFtJM\n65/3PJdIINrgKYTa/DI2MOdlaPbtI5K9awpDPbiexqJEbYyq082aNhukbNREwTFA\nfPQK6dQaQOaKS5zasUq+vWezhQhhGC4gi2OKTpjKVSd2Gkdt8cpDcmRa+P+GTALj\n0oupI92tJ3zZCdSHEkQRfUMHzBWQeAo1teLFDFaD6hfxXcTwYAa2ZI3hNQ1JEIJO\ncEdPHoWpAgMBAAECggEAWVm+7LjXESFtLGwHiLB+sDo8MD08HVnWWmJFDWaNJq5F\nJ+JibFYciUPbwRpCe3cLstdEZwkBlet0P4AlP3yzy+p01mEjD7iCqzxMl4kGfMD9\nPR1TSp3gPd/7WKCdo9KCLG4g0BvW6g4J5QGABjWDdzm/NZxIpi5vdrnYYlSZTrMZ\nyj4WNyY+lreac+eA1uK52N4AUEnqLwjIPivLAdsYq9GK0P1MpEbX84pwLaIVEwh4\nVkfxIViCtvApiDaS4RkLhci7AtkO01T2kYyz+Su/3gk13vpa2gnYQz40+/z58gz5\n2j2xCkDfKggSJv2goMvyWYEg5BxNumrgq3pZvi7eXQKBgQD5RkIUlzFIHoPfCbXb\nUy8cHuM4V9vTRMgiFHR+/XciOAS9vJRZUTeiGHWwMH2aMyJLEzKR0uSphtSj6wXr\nhHg999qH37gaavssEE2/rNEm9uWnEeicmJfMesOUKfByI37/gVinvYDbUt77HsEj\nhq19Yd6fp2kROd+Oyn5zLrShOwKBgQDbXDY5gDF56f4eI5G1VdrA0YYa2Q3F8nh0\nUjcxKNg4tLXiDeUBKrMmgyDiBuDlN/v/9Jbk4nSumn7bTEC2pIPEbWTstJZ/v7jF\ngkaoPbqNKPkj1QD8RuvFZEvF8r9RJhIKWQGCtUc+sR7etyRCLjMvHw8VLnVuwC1Y\nkUKn6AtGawKBgFY+89AR+7AbNr8tqeknn84X9b/hziIL0z7PWvsxEU4ambFYFO/O\nRPRliBqcvGhktsHI8582m3z4NIw+Xb7+B2hRYB/QzO7/AsZdIblmvrq/g/fJH3VG\n6oaKFy8lT5b+JwuaIiVvUK0RwCqcmnCDQXV3LkKI9rZKEsphz1xk1YRPAoGBANgp\n6G2FfDwNcBO3LXEqp6T3VFXEqyPzquvF0QmqnFhVDB81XgRmVaCP+6mA6cI4BybV\nmpT269DcAkKMxAC34fmBa8EuvFgrUCOiG4rTObC9PbYnww7XvKMKEPmCGzIWeBSm\nXSy3AvwugqMqipqE+H9o9e4DmEmJK6ZpjuvzaJj9AoGANkn2PHyom9JHcBaErSYE\n5bDjifHqu73A4+h0IF4LkYlSKytYoJZCRI8+UG0kTkjzbkYFCyXhfXLCQYg1rwkV\nxCDO+qWyCuRVV02PgoHvNF8Uv3mrOVVZxmSy0gWzC3jlS4qxgj5W1Jf/u0HDZqFk\n64rTqxwzUMFYe8b97yr2W9k=\n-----END PRIVATE KEY-----\n";
-var TOKEN_URI = 'https://oauth2.googleapis.com/token';
-var STABS = {
-  meta: 'AppMeta',
-  projects: 'Projects',
-  payments: 'Payments',
-  expenses: 'Expenses',
-  tasks: 'Tasks',
-  team: 'Team',
-  updates: 'SiteUpdates',
-  boq: 'BOQ',
-  stockItems: 'StockItems',
-  stockMovements: 'StockMovements'
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDRsXwmD-9rosj2JajnkjJlHIrV4Nqmsxo",
+  authDomain: "amaran-interiors-5b6b3.firebaseapp.com",
+  projectId: "amaran-interiors-5b6b3",
+  storageBucket: "amaran-interiors-5b6b3.firebasestorage.app",
+  messagingSenderId: "1056548652629",
+  appId: "1:1056548652629:web:a0e132273b8466fce876dc"
 };
-var HDRS = {
-  projects: ['ID', 'Name', 'Client Name', 'Client Phone', 'Address', 'Type', 'Area sqft', 'Status', 'Stage', 'Quoted Amount', 'Start Date', 'Expected End', 'Notes'],
-  payments: ['ID', 'Project ID', 'Project Name', 'Label', 'Amount', 'Mode', 'Date', 'Note'],
-  expenses: ['ID', 'Project ID', 'Project Name', 'Category', 'Description', 'Amount', 'Vendor', 'Bill No', 'Paid By', 'Date'],
-  tasks: ['ID', 'Title', 'Description', 'Project ID', 'Project Name', 'Assigned To Name', 'Priority', 'Status', 'Due Date', 'Visibility', 'Checklist', 'Notes'],
-  team: ['ID', 'Name', 'Role', 'Phone', 'PIN'],
-  updates: ['ID', 'Project ID', 'Project Name', 'Stage', 'Note', 'Date', 'Time'],
-  boq: ['ID', 'Project ID', 'Project Name', 'Stage', 'Description', 'Unit', 'Qty', 'Rate', 'Total Amount']
+var COLS = {
+  projects: 'projects',
+  payments: 'payments',
+  expenses: 'expenses',
+  tasks: 'tasks',
+  team: 'team',
+  updates: 'siteUpdates',
+  boq: 'boq',
+  stockItems: 'stockItems',
+  stockMoves: 'stockMoves',
+  meta: 'meta'
 };
-var _tok = null,
-  _tokExp = 0;
-function b64url(s) {
-  return s.split('=').join('').split('+').join('-').split('/').join('_');
+var _db = null;
+function getDb() {
+  if (_db) return _db;
+  firebase.initializeApp(FIREBASE_CONFIG);
+  _db = firebase.firestore();
+  return _db;
 }
-function getAccessToken() {
-  return _getAccessToken.apply(this, arguments);
+function dbGetAll(_x) {
+  return _dbGetAll.apply(this, arguments);
 }
-function _getAccessToken() {
-  _getAccessToken = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-    var now, hdr, clm, si, pk, bin, ck, sig, sb, r, d;
+function _dbGetAll() {
+  _dbGetAll = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(col) {
+    var snap;
     return _regenerator().w(function (_context2) {
       while (1) switch (_context2.n) {
         case 0:
-          now = Math.floor(Date.now() / 1000);
-          if (!(_tok && now < _tokExp - 60)) {
-            _context2.n = 1;
-            break;
-          }
-          return _context2.a(2, _tok);
+          _context2.n = 1;
+          return getDb().collection(col).get();
         case 1:
-          hdr = b64url(btoa(JSON.stringify({
-            alg: 'RS256',
-            typ: 'JWT'
-          })));
-          clm = b64url(btoa(JSON.stringify({
-            iss: SA_EMAIL,
-            scope: 'https://www.googleapis.com/auth/spreadsheets',
-            aud: TOKEN_URI,
-            exp: now + 3600,
-            iat: now
-          })));
-          si = hdr + '.' + clm;
-          pk = SA_KEY.split('-----BEGIN PRIVATE KEY-----').join('').split('-----END PRIVATE KEY-----').join('').split('\n').join('');
-          bin = Uint8Array.from(atob(pk), function (c) {
-            return c.charCodeAt(0);
-          });
-          _context2.n = 2;
-          return crypto.subtle.importKey('pkcs8', bin.buffer, {
-            name: 'RSASSA-PKCS1-v1_5',
-            hash: 'SHA-256'
-          }, false, ['sign']);
-        case 2:
-          ck = _context2.v;
-          _context2.n = 3;
-          return crypto.subtle.sign('RSASSA-PKCS1-v1_5', ck, new TextEncoder().encode(si));
-        case 3:
-          sig = _context2.v;
-          sb = b64url(btoa(String.fromCharCode.apply(String, _toConsumableArray(new Uint8Array(sig)))));
-          _context2.n = 4;
-          return fetch(TOKEN_URI, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' + si + '.' + sb
-          });
-        case 4:
-          r = _context2.v;
-          _context2.n = 5;
-          return r.json();
-        case 5:
-          d = _context2.v;
-          _tok = d.access_token;
-          _tokExp = now + 3600;
-          return _context2.a(2, _tok);
+          snap = _context2.v;
+          return _context2.a(2, snap.docs.map(function (d) {
+            return _objectSpread({
+              id: d.id
+            }, d.data());
+          }));
       }
     }, _callee2);
   }));
-  return _getAccessToken.apply(this, arguments);
+  return _dbGetAll.apply(this, arguments);
 }
-function sheetsGet(_x) {
-  return _sheetsGet.apply(this, arguments);
+function dbBatch(_x2) {
+  return _dbBatch.apply(this, arguments);
 }
-function _sheetsGet() {
-  _sheetsGet = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(range) {
-    var t, r, _t2;
-    return _regenerator().w(function (_context3) {
-      while (1) switch (_context3.n) {
-        case 0:
-          _context3.n = 1;
-          return getAccessToken();
-        case 1:
-          t = _context3.v;
-          _context3.n = 2;
-          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "/values/").concat(encodeURIComponent(range)), {
-            headers: {
-              Authorization: 'Bearer ' + t
-            }
-          });
-        case 2:
-          r = _context3.v;
-          _context3.n = 3;
-          return r.json();
-        case 3:
-          _t2 = _context3.v.values;
-          if (_t2) {
-            _context3.n = 4;
-            break;
-          }
-          _t2 = [];
-        case 4:
-          return _context3.a(2, _t2);
-      }
-    }, _callee3);
-  }));
-  return _sheetsGet.apply(this, arguments);
-}
-function sheetsSet(_x2, _x3) {
-  return _sheetsSet.apply(this, arguments);
-}
-function _sheetsSet() {
-  _sheetsSet = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(range, values) {
-    var t;
+function _dbBatch() {
+  _dbBatch = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(writes) {
+    var db, _loop, i;
     return _regenerator().w(function (_context4) {
       while (1) switch (_context4.n) {
         case 0:
-          _context4.n = 1;
-          return getAccessToken();
-        case 1:
-          t = _context4.v;
-          _context4.n = 2;
-          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "/values/").concat(encodeURIComponent(range), "?valueInputOption=RAW"), {
-            method: 'PUT',
-            headers: {
-              Authorization: 'Bearer ' + t,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              range: range,
-              majorDimension: 'ROWS',
-              values: values
-            })
+          db = getDb();
+          _loop = /*#__PURE__*/_regenerator().m(function _loop() {
+            var b;
+            return _regenerator().w(function (_context3) {
+              while (1) switch (_context3.n) {
+                case 0:
+                  b = db.batch();
+                  writes.slice(i, i + 400).forEach(function (w) {
+                    var ref = db.collection(w.col).doc(w.id);
+                    if (w.op === 'set') b.set(ref, w.data);
+                  });
+                  _context3.n = 1;
+                  return b.commit();
+                case 1:
+                  return _context3.a(2);
+              }
+            }, _loop);
           });
+          i = 0;
+        case 1:
+          if (!(i < writes.length)) {
+            _context4.n = 3;
+            break;
+          }
+          return _context4.d(_regeneratorValues(_loop()), 2);
         case 2:
+          i += 400;
+          _context4.n = 1;
+          break;
+        case 3:
           return _context4.a(2);
       }
-    }, _callee4);
+    }, _callee3);
   }));
-  return _sheetsSet.apply(this, arguments);
+  return _dbBatch.apply(this, arguments);
 }
-var _tabsReady = false;
-function ensureTabs() {
-  return _ensureTabs.apply(this, arguments);
+function loadData() {
+  return _loadData.apply(this, arguments);
 }
-function _ensureTabs() {
-  _ensureTabs = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-    var token, r, existing, toAdd, valueRanges, _t3;
+function _loadData() {
+  _loadData = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+    var _yield$Promise$all, _yield$Promise$all2, prD, paD, exD, taD, teD, upD, bqD, siD, smD, mtD, meta, projects, team, tasks, stockItems, stockMoves, _t2;
     return _regenerator().w(function (_context5) {
-      while (1) switch (_context5.n) {
+      while (1) switch (_context5.p = _context5.n) {
         case 0:
-          if (!_tabsReady) {
-            _context5.n = 1;
-            break;
-          }
-          return _context5.a(2);
+          _context5.p = 0;
+          _context5.n = 1;
+          return Promise.all([dbGetAll(COLS.projects), dbGetAll(COLS.payments), dbGetAll(COLS.expenses), dbGetAll(COLS.tasks), dbGetAll(COLS.team), dbGetAll(COLS.updates), dbGetAll(COLS.boq), dbGetAll(COLS.stockItems), dbGetAll(COLS.stockMoves), dbGetAll(COLS.meta)]);
         case 1:
-          _context5.n = 2;
-          return getAccessToken();
+          _yield$Promise$all = _context5.v;
+          _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 10);
+          prD = _yield$Promise$all2[0];
+          paD = _yield$Promise$all2[1];
+          exD = _yield$Promise$all2[2];
+          taD = _yield$Promise$all2[3];
+          teD = _yield$Promise$all2[4];
+          upD = _yield$Promise$all2[5];
+          bqD = _yield$Promise$all2[6];
+          siD = _yield$Promise$all2[7];
+          smD = _yield$Promise$all2[8];
+          mtD = _yield$Promise$all2[9];
+          meta = {};
+          mtD.forEach(function (d) {
+            return meta[d.id] = d.value;
+          });
+          projects = dedup(prD.map(function (p) {
+            return _objectSpread(_objectSpread({}, p), {}, {
+              payments: sortByDate(dedup(paD.filter(function (x) {
+                return x.projectId === p.id;
+              }))),
+              expenses: sortByDate(dedup(exD.filter(function (x) {
+                return x.projectId === p.id;
+              }))),
+              updates: sortByDate(dedup(upD.filter(function (x) {
+                return x.projectId === p.id;
+              })), false),
+              boq: dedup(bqD.filter(function (x) {
+                return x.projectId === p.id;
+              }))
+            });
+          }));
+          team = dedup(teD);
+          tasks = dedup(taD.map(function (t) {
+            return _objectSpread(_objectSpread({}, t), {}, {
+              checklist: t.checklist || []
+            });
+          }));
+          stockItems = dedup(siD);
+          stockMoves = sortByDate(dedup(smD), false);
+          return _context5.a(2, {
+            projects: projects,
+            team: team,
+            tasks: tasks,
+            stockItems: stockItems,
+            stockMoves: stockMoves,
+            expenseCats: meta.expenseCats ? JSON.parse(meta.expenseCats) : [].concat(DEFAULT_EXPENSE_CATS),
+            stockCats: meta.stockCats ? JSON.parse(meta.stockCats) : DEFAULT_STOCK_CATS
+          });
         case 2:
-          token = _context5.v;
-          _context5.n = 3;
-          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "?fields=sheets.properties.title"), {
-            headers: {
-              Authorization: 'Bearer ' + token
-            }
+          _context5.p = 2;
+          _t2 = _context5.v;
+          console.error('Load error:', _t2);
+          return _context5.a(2, {
+            projects: [],
+            team: [],
+            tasks: [],
+            stockItems: [],
+            stockMoves: [],
+            expenseCats: [].concat(DEFAULT_EXPENSE_CATS),
+            stockCats: DEFAULT_STOCK_CATS
           });
-        case 3:
-          r = _context5.v;
-          _context5.n = 4;
-          return r.json();
-        case 4:
-          _t3 = _context5.v.sheets;
-          if (_t3) {
-            _context5.n = 5;
-            break;
-          }
-          _t3 = [];
-        case 5:
-          existing = _t3.map(function (s) {
-            return s.properties.title;
-          });
-          toAdd = Object.values(STABS).filter(function (x) {
-            return !existing.includes(x);
-          });
-          if (!toAdd.length) {
-            _context5.n = 7;
-            break;
-          }
-          _context5.n = 6;
-          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, ":batchUpdate"), {
-            method: 'POST',
-            headers: {
-              Authorization: 'Bearer ' + token,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              requests: toAdd.map(function (x) {
-                return {
-                  addSheet: {
-                    properties: {
-                      title: x
-                    }
-                  }
-                };
-              })
-            })
-          });
-        case 6:
-          // Write headers to new tabs only
-          valueRanges = toAdd.filter(function (t) {
-            return Object.keys(STABS).find(function (k) {
-              return STABS[k] === t && k !== 'meta';
-            });
-          }).map(function (t) {
-            var key = Object.keys(STABS).find(function (k) {
-              return STABS[k] === t;
-            });
-            return {
-              range: t + '!A1',
-              values: [HDRS[key]]
-            };
-          });
-          if (!valueRanges.length) {
-            _context5.n = 7;
-            break;
-          }
-          _context5.n = 7;
-          return fetch("https://sheets.googleapis.com/v4/spreadsheets/".concat(SHEET_ID, "/values:batchUpdate"), {
-            method: 'POST',
-            headers: {
-              Authorization: 'Bearer ' + token,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              valueInputOption: 'RAW',
-              data: valueRanges
-            })
-          });
-        case 7:
-          _tabsReady = true;
-        case 8:
-          return _context5.a(2);
       }
-    }, _callee5);
+    }, _callee4, null, [[0, 2]]);
   }));
-  return _ensureTabs.apply(this, arguments);
+  return _loadData.apply(this, arguments);
 }
-function migrateOldData() {
-  return _migrateOldData.apply(this, arguments);
+function saveData(_x3) {
+  return _saveData.apply(this, arguments);
 }
-function _migrateOldData() {
-  _migrateOldData = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
-    var rows, raw, old, _t4;
+function _saveData() {
+  _saveData = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(d) {
+    var w, _t3;
     return _regenerator().w(function (_context6) {
       while (1) switch (_context6.p = _context6.n) {
         case 0:
           _context6.p = 0;
-          _context6.n = 1;
-          return sheetsGet('AppData!A1');
-        case 1:
-          rows = _context6.v;
-          if (!(!rows.length || !rows[0][0])) {
-            _context6.n = 2;
-            break;
-          }
-          return _context6.a(2, null);
-        case 2:
-          raw = rows[0][0];
-          if (!raw.startsWith('{')) {
-            _context6.n = 3;
-            break;
-          }
-          old = JSON.parse(raw);
-          if (!(old.projects && old.projects.length > 0)) {
-            _context6.n = 3;
-            break;
-          }
-          return _context6.a(2, old);
-        case 3:
-          return _context6.a(2, null);
-        case 4:
-          _context6.p = 4;
-          _t4 = _context6.v;
-          return _context6.a(2, null);
-      }
-    }, _callee6, null, [[0, 4]]);
-  }));
-  return _migrateOldData.apply(this, arguments);
-}
-function rows2obj(rows, key) {
-  if (rows.length < 2) return [];
-  var h = rows[0];
-  return rows.slice(1).filter(function (r) {
-    return r[0];
-  }).map(function (r) {
-    var o = {};
-    h.forEach(function (x, i) {
-      return o[x] = r[i] || '';
-    });
-    return o;
-  });
-}
-function loadDrive() {
-  return _loadDrive.apply(this, arguments);
-}
-function _loadDrive() {
-  _loadDrive = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-    var token, ranges, url, res, json, vr, _vr, pr, pa, ex, ta, te, up, bq, mt, oldData, po, pao, exo, tao, teo, upo, bqo, categories, cr, projects, team, tasks, dedup, _t5;
-    return _regenerator().w(function (_context7) {
-      while (1) switch (_context7.p = _context7.n) {
-        case 0:
-          _context7.p = 0;
-          _context7.n = 1;
-          return ensureTabs();
-        case 1:
-          _context7.n = 2;
-          return getAccessToken();
-        case 2:
-          token = _context7.v;
-          // Single batch request - all tabs at once
-          ranges = Object.values(STABS).filter(function (t) {
-            return t !== STABS.meta;
-          }).map(function (t) {
-            return t + '!A:N';
-          }).concat([STABS.meta + '!A:B']);
-          url = 'https://sheets.googleapis.com/v4/spreadsheets/' + SHEET_ID + '/values:batchGet?' + ranges.map(function (r) {
-            return 'ranges=' + encodeURIComponent(r);
-          }).join('&');
-          _context7.n = 3;
-          return fetch(url, {
-            headers: {
-              Authorization: 'Bearer ' + token
+          w = [];
+          dedup(d.projects || []).forEach(function (p) {
+            var payments = p.payments,
+              expenses = p.expenses,
+              updates = p.updates,
+              boq = p.boq,
+              proj = _objectWithoutProperties(p, _excluded4);
+            w.push({
+              op: 'set',
+              col: COLS.projects,
+              id: p.id,
+              data: proj
+            });
+          });
+          dedup((d.projects || []).flatMap(function (p) {
+            return (p.payments || []).map(function (x) {
+              return _objectSpread(_objectSpread({}, x), {}, {
+                projectId: p.id,
+                projectName: p.name
+              });
+            });
+          })).forEach(function (x) {
+            return w.push({
+              op: 'set',
+              col: COLS.payments,
+              id: x.id,
+              data: x
+            });
+          });
+          dedup((d.projects || []).flatMap(function (p) {
+            return (p.expenses || []).map(function (x) {
+              return _objectSpread(_objectSpread({}, x), {}, {
+                projectId: p.id,
+                projectName: p.name
+              });
+            });
+          })).forEach(function (x) {
+            return w.push({
+              op: 'set',
+              col: COLS.expenses,
+              id: x.id,
+              data: x
+            });
+          });
+          dedup((d.projects || []).flatMap(function (p) {
+            return (p.updates || []).map(function (x) {
+              return _objectSpread(_objectSpread({}, x), {}, {
+                projectId: p.id,
+                projectName: p.name
+              });
+            });
+          })).forEach(function (x) {
+            return w.push({
+              op: 'set',
+              col: COLS.updates,
+              id: x.id,
+              data: x
+            });
+          });
+          dedup((d.projects || []).flatMap(function (p) {
+            return (p.boq || []).map(function (x) {
+              return _objectSpread(_objectSpread({}, x), {}, {
+                projectId: p.id,
+                projectName: p.name
+              });
+            });
+          })).forEach(function (x) {
+            return w.push({
+              op: 'set',
+              col: COLS.boq,
+              id: x.id,
+              data: x
+            });
+          });
+          dedup(d.tasks || []).forEach(function (t) {
+            return w.push({
+              op: 'set',
+              col: COLS.tasks,
+              id: t.id,
+              data: t
+            });
+          });
+          dedup(d.team || []).forEach(function (m) {
+            return w.push({
+              op: 'set',
+              col: COLS.team,
+              id: m.id,
+              data: m
+            });
+          });
+          dedup(d.stockItems || []).forEach(function (i) {
+            return w.push({
+              op: 'set',
+              col: COLS.stockItems,
+              id: i.id,
+              data: i
+            });
+          });
+          dedup(d.stockMoves || []).forEach(function (m) {
+            return w.push({
+              op: 'set',
+              col: COLS.stockMoves,
+              id: m.id,
+              data: m
+            });
+          });
+          w.push({
+            op: 'set',
+            col: COLS.meta,
+            id: 'expenseCats',
+            data: {
+              value: JSON.stringify(d.expenseCats || DEFAULT_EXPENSE_CATS)
             }
           });
-        case 3:
-          res = _context7.v;
-          _context7.n = 4;
-          return res.json();
-        case 4:
-          json = _context7.v;
-          vr = (json.valueRanges || []).map(function (v) {
-            return v.values || [];
+          w.push({
+            op: 'set',
+            col: COLS.meta,
+            id: 'stockCats',
+            data: {
+              value: JSON.stringify(d.stockCats || DEFAULT_STOCK_CATS)
+            }
           });
-          _vr = _slicedToArray(vr, 8), pr = _vr[0], pa = _vr[1], ex = _vr[2], ta = _vr[3], te = _vr[4], up = _vr[5], bq = _vr[6], mt = _vr[7]; // If no project data, try old AppData migration
-          if (!(!pr || pr.length < 2)) {
-            _context7.n = 7;
-            break;
-          }
-          _context7.n = 5;
-          return migrateOldData();
-        case 5:
-          oldData = _context7.v;
-          if (!(oldData && oldData.projects && oldData.projects.length > 0)) {
-            _context7.n = 7;
-            break;
-          }
-          _context7.n = 6;
-          return saveDrive(oldData);
-        case 6:
-          return _context7.a(2, _objectSpread(_objectSpread({}, oldData), {}, {
-            categories: oldData.categories || [].concat(DEFAULT_EXPENSE_CATS)
-          }));
-        case 7:
-          po = rows2obj(pr || [], 'projects'), pao = rows2obj(pa || [], 'payments'), exo = rows2obj(ex || [], 'expenses');
-          tao = rows2obj(ta || [], 'tasks'), teo = rows2obj(te || [], 'team'), upo = rows2obj(up || [], 'updates'), bqo = rows2obj(bq || [], 'boq');
-          categories = [].concat(DEFAULT_EXPENSE_CATS);
-          if (mt && mt.length) {
-            cr = (mt || []).find(function (r) {
-              return r[0] === 'categories';
-            });
-            if (cr && cr[1]) try {
-              categories = JSON.parse(cr[1]);
-            } catch (e) {}
-          }
-          projects = po.map(function (p) {
-            return {
-              id: p['ID'],
-              name: p['Name'],
-              clientName: p['Client Name'],
-              clientPhone: p['Client Phone'],
-              clientAddress: p['Address'],
-              projectType: p['Type'],
-              area: p['Area sqft'],
-              status: p['Status'],
-              currentStage: p['Stage'],
-              quotedAmount: p['Quoted Amount'],
-              startDate: p['Start Date'],
-              expectedEnd: p['Expected End'],
-              notes: p['Notes'],
-              payments: function () {
-                var seen = new Set();
-                return pao.filter(function (x) {
-                  return x['Project ID'] === p['ID'];
-                }).map(function (x) {
-                  return {
-                    id: x['ID'],
-                    label: x['Label'],
-                    amount: Number(x['Amount'] || 0),
-                    mode: x['Mode'],
-                    date: x['Date'],
-                    note: x['Note']
-                  };
-                }).filter(function (x) {
-                  if (!x.id || seen.has(x.id)) return false;
-                  seen.add(x.id);
-                  return true;
-                }).sort(function (a, b) {
-                  return (a.date || '').localeCompare(b.date || '');
-                });
-              }(),
-              expenses: function () {
-                var seen = new Set();
-                return exo.filter(function (x) {
-                  return x['Project ID'] === p['ID'];
-                }).map(function (x) {
-                  return {
-                    id: x['ID'],
-                    category: x['Category'],
-                    description: x['Description'],
-                    amount: Number(x['Amount'] || 0),
-                    vendor: x['Vendor'],
-                    billNo: x['Bill No'],
-                    paidBy: x['Paid By'],
-                    date: x['Date']
-                  };
-                }).filter(function (x) {
-                  if (!x.id || seen.has(x.id)) return false;
-                  seen.add(x.id);
-                  return true;
-                }).sort(function (a, b) {
-                  return (a.date || '').localeCompare(b.date || '');
-                });
-              }(),
-              updates: upo.filter(function (x) {
-                return x['Project ID'] === p['ID'];
-              }).map(function (x) {
-                return {
-                  id: x['ID'],
-                  stage: x['Stage'],
-                  note: x['Note'],
-                  date: x['Date'],
-                  time: x['Time']
-                };
-              }).sort(function (a, b) {
-                return (a.date || '').localeCompare(b.date || '');
-              }),
-              boq: bqo.filter(function (x) {
-                return x['Project ID'] === p['ID'];
-              }).map(function (x) {
-                return {
-                  id: x['ID'],
-                  stage: x['Stage'],
-                  description: x['Description'],
-                  unit: x['Unit'],
-                  qty: Number(x['Qty'] || 0),
-                  rate: Number(x['Rate'] || 0)
-                };
-              })
-            };
-          });
-          team = teo.map(function (m) {
-            return {
-              id: m['ID'],
-              name: m['Name'],
-              role: m['Role'],
-              phone: m['Phone'],
-              pin: m['PIN']
-            };
-          });
-          tasks = tao.map(function (t) {
-            return {
-              id: t['ID'],
-              title: t['Title'],
-              description: t['Description'],
-              projectId: t['Project ID'],
-              assigneeId: (teo.find(function (m) {
-                return m['Name'] === t['Assigned To Name'];
-              }) || {})['ID'] || '',
-              priority: t['Priority'],
-              status: t['Status'],
-              dueDate: t['Due Date'],
-              visibility: t['Visibility'],
-              notes: t['Notes'],
-              checklist: t['Checklist'] ? JSON.parse(t['Checklist'] || '[]') : [],
-              createdAt: t['Created At'] || ''
-            };
-          }); // Final dedup pass on load
-          dedup = function dedup(arr) {
-            var s = new Set();
-            return (arr || []).filter(function (x) {
-              if (!x.id || s.has(String(x.id))) return false;
-              s.add(String(x.id));
-              return true;
-            });
-          };
-          return _context7.a(2, {
-            projects: projects.map(function (p) {
-              return _objectSpread(_objectSpread({}, p), {}, {
-                payments: dedup(p.payments),
-                expenses: dedup(p.expenses),
-                updates: dedup(p.updates),
-                boq: dedup(p.boq)
-              });
-            }),
-            team: dedup(team),
-            tasks: dedup(tasks),
-            categories: categories
-          });
-        case 8:
-          _context7.p = 8;
-          _t5 = _context7.v;
-          console.error('Load error', _t5);
-          return _context7.a(2, {
-            projects: [],
-            team: [],
-            tasks: [],
-            categories: [].concat(DEFAULT_EXPENSE_CATS)
-          });
-      }
-    }, _callee7, null, [[0, 8]]);
-  }));
-  return _loadDrive.apply(this, arguments);
-}
-function saveDrive(_x4) {
-  return _saveDrive.apply(this, arguments);
-}
-function _saveDrive() {
-  _saveDrive = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(data) {
-    var dedup, token, findName, findMember, valueRanges, _t6;
-    return _regenerator().w(function (_context8) {
-      while (1) switch (_context8.p = _context8.n) {
-        case 0:
-          // Deduplicate all arrays before saving
-          dedup = function dedup(arr) {
-            var seen = new Set();
-            return (arr || []).filter(function (x) {
-              if (!x.id || seen.has(String(x.id))) return false;
-              seen.add(String(x.id));
-              return true;
-            });
-          };
-          data = _objectSpread(_objectSpread({}, data), {}, {
-            projects: (data.projects || []).map(function (p) {
-              return _objectSpread(_objectSpread({}, p), {}, {
-                payments: dedup(p.payments),
-                expenses: dedup(p.expenses),
-                updates: dedup(p.updates),
-                boq: dedup(p.boq)
-              });
-            }),
-            tasks: dedup(data.tasks),
-            team: dedup(data.team)
-          });
-          _context8.p = 1;
-          _context8.n = 2;
-          return ensureTabs();
-        case 2:
-          _context8.n = 3;
-          return getAccessToken();
-        case 3:
-          token = _context8.v;
-          findName = function findName(id) {
-            var _find;
-            return ((_find = (data.projects || []).find(function (p) {
-              return p.id === id;
-            })) === null || _find === void 0 ? void 0 : _find.name) || '';
-          };
-          findMember = function findMember(id) {
-            var _find2;
-            return ((_find2 = (data.team || []).find(function (m) {
-              return m.id === id;
-            })) === null || _find2 === void 0 ? void 0 : _find2.name) || '';
-          };
-          valueRanges = [{
-            range: STABS.projects + '!A:Z',
-            values: [HDRS.projects].concat(_toConsumableArray((data.projects || []).map(function (p) {
-              return [p.id, p.name, p.clientName || '', p.clientPhone || '', p.clientAddress || '', p.projectType || '', p.area || '', p.status || '', p.currentStage || '', p.quotedAmount || '', p.startDate || '', p.expectedEnd || '', p.notes || ''];
-            })))
-          }, {
-            range: STABS.payments + '!A:Z',
-            values: [HDRS.payments].concat(_toConsumableArray((data.projects || []).flatMap(function (p) {
-              var seen = new Set();
-              return _toConsumableArray(p.payments || []).filter(function (x) {
-                if (!x.id || seen.has(x.id)) return false;
-                seen.add(x.id);
-                return true;
-              }).sort(function (a, b) {
-                return (a.date || '').localeCompare(b.date || '');
-              }).map(function (x) {
-                return [x.id, p.id, p.name, x.label || '', x.amount || 0, x.mode || '', x.date || '', x.note || ''];
-              });
-            })))
-          }, {
-            range: STABS.expenses + '!A:Z',
-            values: [HDRS.expenses].concat(_toConsumableArray((data.projects || []).flatMap(function (p) {
-              var seen = new Set();
-              return _toConsumableArray(p.expenses || []).filter(function (x) {
-                if (!x.id || seen.has(x.id)) return false;
-                seen.add(x.id);
-                return true;
-              }).sort(function (a, b) {
-                return (a.date || '').localeCompare(b.date || '');
-              }).map(function (x) {
-                return [x.id, p.id, p.name, x.category || '', x.description || '', x.amount || 0, x.vendor || '', x.billNo || '', x.paidBy || '', x.date || ''];
-              });
-            })))
-          }, {
-            range: STABS.updates + '!A:Z',
-            values: [HDRS.updates].concat(_toConsumableArray((data.projects || []).flatMap(function (p) {
-              return (p.updates || []).map(function (x) {
-                return [x.id, p.id, p.name, x.stage || '', x.note || '', x.date || '', x.time || ''];
-              });
-            })))
-          }, {
-            range: STABS.boq + '!A:Z',
-            values: [HDRS.boq].concat(_toConsumableArray((data.projects || []).flatMap(function (p) {
-              return (p.boq || []).map(function (x) {
-                return [x.id, p.id, p.name, x.stage || '', x.description || '', x.unit || '', x.qty || 0, x.rate || 0, (x.qty || 0) * (x.rate || 0)];
-              });
-            })))
-          }, {
-            range: STABS.tasks + '!A:Z',
-            values: [HDRS.tasks].concat(_toConsumableArray((data.tasks || []).map(function (t) {
-              return [t.id, t.title || '', t.description || '', t.projectId || '', findName(t.projectId), findMember(t.assigneeId), t.priority || '', t.status || '', t.dueDate || '', t.visibility || '', JSON.stringify(t.checklist || []), t.notes || ''];
-            })))
-          }, {
-            range: STABS.team + '!A:Z',
-            values: [HDRS.team].concat(_toConsumableArray((data.team || []).map(function (m) {
-              return [m.id, m.name || '', m.role || '', m.phone || '', m.pin || ''];
-            })))
-          }, {
-            range: STABS.meta + '!A:B',
-            values: [['key', 'value'], ['categories', JSON.stringify(data.categories || DEFAULT_EXPENSE_CATS)]]
-          }]; // Single batch update for all tabs
-          _context8.n = 4;
-          return fetch('https://sheets.googleapis.com/v4/spreadsheets/' + SHEET_ID + '/values:batchUpdate', {
-            method: 'POST',
-            headers: {
-              Authorization: 'Bearer ' + token,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              valueInputOption: 'RAW',
-              data: valueRanges
-            })
-          });
-        case 4:
-          _context8.n = 6;
+          _context6.n = 1;
+          return dbBatch(w);
+        case 1:
+          _context6.n = 3;
           break;
-        case 5:
-          _context8.p = 5;
-          _t6 = _context8.v;
-          console.error('Save error', _t6);
-        case 6:
-          return _context8.a(2);
+        case 2:
+          _context6.p = 2;
+          _t3 = _context6.v;
+          console.error('Save error:', _t3);
+          throw _t3;
+        case 3:
+          return _context6.a(2);
       }
-    }, _callee8, null, [[1, 5]]);
+    }, _callee5, null, [[0, 2]]);
   }));
-  return _saveDrive.apply(this, arguments);
+  return _saveData.apply(this, arguments);
 }
 var T = {
   bg: "#F8F9FF",
@@ -5676,10 +5301,10 @@ function App() {
       projects: [],
       team: [],
       tasks: [],
-      categories: [].concat(DEFAULT_EXPENSE_CATS),
+      expenseCats: [].concat(DEFAULT_EXPENSE_CATS),
       stockItems: [],
-      stockMovements: [],
-      stockCategories: DEFAULT_STOCK_CATS
+      stockMoves: [],
+      stockCats: DEFAULT_STOCK_CATS
     }),
     _useState74 = _slicedToArray(_useState73, 2),
     data = _useState74[0],
@@ -5730,15 +5355,15 @@ function App() {
     setSearch = _useState96[1];
   var saveRef = useRef(null);
   useEffect(function () {
-    loadDrive().then(function (d) {
+    loadData().then(function (d) {
       setData({
         projects: d.projects || [],
         team: d.team || [],
         tasks: d.tasks || [],
-        categories: d.categories || [].concat(DEFAULT_EXPENSE_CATS),
+        expenseCats: d.expenseCats || [].concat(DEFAULT_EXPENSE_CATS),
         stockItems: d.stockItems || [],
-        stockMovements: d.stockMovements || [],
-        stockCategories: d.stockCategories || DEFAULT_STOCK_CATS
+        stockMoves: d.stockMoves || [],
+        stockCats: d.stockCats || DEFAULT_STOCK_CATS
       });
       setLoading(false);
     }).catch(function (e) {
@@ -5768,7 +5393,7 @@ function App() {
             setSaving(true);
             _context.p = 2;
             _context.n = 3;
-            return saveDrive(pendingDataRef.current);
+            return saveData(pendingDataRef.current);
           case 3:
             _context.n = 5;
             break;
@@ -6249,11 +5874,11 @@ function App() {
     }));
   }))), page === "expenses" && /*#__PURE__*/React.createElement(ExpensesPage, {
     projects: data.projects,
-    categories: data.categories
+    expenseCats: data.expenseCats
   }), page === "stock" && /*#__PURE__*/React.createElement(StockPage, {
     stockItems: data.stockItems || [],
-    stockMovements: data.stockMovements || [],
-    stockCategories: data.stockCategories || DEFAULT_STOCK_CATS,
+    stockMoves: data.stockMoves || [],
+    stockCats: data.stockCats || DEFAULT_STOCK_CATS,
     projects: data.projects,
     team: data.team,
     currentUser: loggedIn,
@@ -6263,8 +5888,8 @@ function App() {
     onUpdateMovements: function onUpdateMovements(moves) {
       return update("stockMovements", moves);
     },
-    onUpdateCategories: function onUpdateCategories(cats) {
-      return update("stockCategories", cats);
+    onUpdateCats: function onUpdateCats(cats) {
+      return update("stockCats", cats);
     }
   }), page === "tasks" && /*#__PURE__*/React.createElement(TasksPage, {
     tasks: data.tasks,
@@ -6285,7 +5910,7 @@ function App() {
   }), showCategories && /*#__PURE__*/React.createElement(CategoriesModal, {
     categories: data.categories || DEFAULT_EXPENSE_CATS,
     onSave: function onSave(cats) {
-      update("categories", cats);
+      update("expenseCats", cats);
       setShowCategories(false);
     },
     onClose: function onClose() {
@@ -6307,7 +5932,7 @@ function App() {
     project: detailProject,
     team: data.team,
     tasks: data.tasks,
-    categories: data.categories,
+    expenseCats: data.expenseCats,
     onClose: function onClose() {
       return setDetailProject(null);
     },
@@ -7867,7 +7492,7 @@ try {
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(React.createElement(App));
 } catch(e) {
-  document.getElementById('root').innerHTML = '<div style="padding:40px;font-family:sans-serif;color:red"><h2>App Error</h2><pre>'+e.message+'</pre></div>';
+  document.getElementById('root').innerHTML = '<div style="padding:40px;color:red"><h2>Error</h2><pre>'+e.message+'</pre></div>';
 }
 </script>
 </body>
