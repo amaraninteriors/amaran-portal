@@ -5410,44 +5410,77 @@ function App() {
       }, _callee, null, [[2, 4]]);
     })), 3000);
   }, []);
-  var update = function update(key, val) {
-    var nd = _objectSpread(_objectSpread({}, data), {}, _defineProperty({}, key, val));
-    setData(nd);
-    persist(nd);
-  };
-  var updateProject = function updateProject(p) {
-    var ps = data.projects.find(function (x) {
-      return x.id === p.id;
-    }) ? data.projects.map(function (x) {
-      return x.id === p.id ? p : x;
-    }) : [].concat(_toConsumableArray(data.projects), [p]);
-    update("projects", ps);
+  var update = useCallback(function (key, val) {
+    setData(function (prev) {
+      var nd = _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, key, val));
+      persist(nd);
+      return nd;
+    });
+  }, [persist]);
+  var updateProject = useCallback(function (p) {
+    setData(function (prev) {
+      var ps = dedup(prev.projects.find(function (x) {
+        return x.id === p.id;
+      }) ? prev.projects.map(function (x) {
+        return x.id === p.id ? p : x;
+      }) : [].concat(_toConsumableArray(prev.projects), [p]));
+      var nd = _objectSpread(_objectSpread({}, prev), {}, {
+        projects: ps
+      });
+      persist(nd);
+      return nd;
+    });
     setShowNewProject(false);
-    if ((detailProject === null || detailProject === void 0 ? void 0 : detailProject.id) === p.id) setDetailProject(p);
-  };
-  var deleteProject = function deleteProject(id) {
-    update("projects", data.projects.filter(function (p) {
-      return p.id !== id;
-    }));
-  };
-  var updateTask = function updateTask(t) {
-    var ts = data.tasks.find(function (x) {
-      return x.id === t.id;
-    }) ? data.tasks.map(function (x) {
-      return x.id === t.id ? t : x;
-    }) : [].concat(_toConsumableArray(data.tasks), [t]);
-    update("tasks", ts);
+    setDetailProject(function (dp) {
+      return (dp === null || dp === void 0 ? void 0 : dp.id) === p.id ? p : dp;
+    });
+  }, [persist]);
+  var deleteProject = useCallback(function (id) {
+    setData(function (prev) {
+      var nd = _objectSpread(_objectSpread({}, prev), {}, {
+        projects: prev.projects.filter(function (p) {
+          return p.id !== id;
+        })
+      });
+      persist(nd);
+      return nd;
+    });
+  }, [persist]);
+  var updateTask = useCallback(function (t) {
+    setData(function (prev) {
+      var ts = dedup(prev.tasks.find(function (x) {
+        return x.id === t.id;
+      }) ? prev.tasks.map(function (x) {
+        return x.id === t.id ? t : x;
+      }) : [].concat(_toConsumableArray(prev.tasks), [t]));
+      var nd = _objectSpread(_objectSpread({}, prev), {}, {
+        tasks: ts
+      });
+      persist(nd);
+      return nd;
+    });
     setShowNewTask(false);
-  };
-  var deleteTask = function deleteTask(id) {
-    return update("tasks", data.tasks.filter(function (t) {
-      return t.id !== id;
-    }));
-  };
-  var updateTeam = function updateTeam(fn) {
-    var nt = fn(data.team);
-    update("team", nt);
-  };
+  }, [persist]);
+  var deleteTask = useCallback(function (id) {
+    setData(function (prev) {
+      var nd = _objectSpread(_objectSpread({}, prev), {}, {
+        tasks: prev.tasks.filter(function (t) {
+          return t.id !== id;
+        })
+      });
+      persist(nd);
+      return nd;
+    });
+  }, [persist]);
+  var updateTeam = useCallback(function (fn) {
+    setData(function (prev) {
+      var nd = _objectSpread(_objectSpread({}, prev), {}, {
+        team: dedup(fn(prev.team))
+      });
+      persist(nd);
+      return nd;
+    });
+  }, [persist]);
   var isOwner = loggedIn === "owner";
   var currentMember = !isOwner ? data.team.find(function (m) {
     return m.id === loggedIn;
