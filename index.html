@@ -5354,6 +5354,8 @@ function App() {
     search = _useState96[0],
     setSearch = _useState96[1];
   var saveRef = useRef(null);
+  var isSavingRef = useRef(false);
+  var pendingDataRef = useRef(null);
   useEffect(function () {
     loadData().then(function (d) {
       setData({
@@ -5372,8 +5374,6 @@ function App() {
       setLoading(false);
     });
   }, []);
-  var isSavingRef = useRef(false);
-  var pendingDataRef = useRef(null);
   var persist = useCallback(function (d) {
     // Always store latest data
     pendingDataRef.current = d;
